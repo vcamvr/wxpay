@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-func XmlToMap(r string) Params {
+func XmlToMap(xmlStr string) Params {
 
 	params := make(Params)
 	decoder := xml.NewDecoder(strings.NewReader(xmlStr))
