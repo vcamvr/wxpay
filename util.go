@@ -35,7 +35,6 @@ func XmlToMap(xmlStr string) Params {
 		if key != "xml" && key != "" {
 			if value != "\n" && value != "" {
 				params.SetString(key, value)
-				fmt.Println(key + ":" + value)
 			}
 		}
 	}
