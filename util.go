@@ -1,6 +1,8 @@
 package wxpay
 
 import (
+	"fmt"
+
 	"bytes"
 	"crypto/tls"
 	"encoding/pem"
@@ -12,7 +14,7 @@ import (
 	"time"
 )
 
-func XmlToMap(xmlStr string) Params {
+func XmlToMap(r string) Params {
 
 	params := make(Params)
 	decoder := xml.NewDecoder(strings.NewReader(xmlStr))
@@ -27,12 +29,13 @@ func XmlToMap(xmlStr string) Params {
 		case xml.StartElement: // 开始标签
 			key = token.Name.Local
 		case xml.CharData: // 标签内容
-			content := string([]byte(token))
+			content := strings.TrimSpace(string([]byte(token)))
 			value = content
 		}
 		if key != "xml" && key != "" {
 			if value != "\n" {
 				params.SetString(key, value)
+				fmt.Println(key + ":" + value)
 			}
 		}
 	}
