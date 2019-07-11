@@ -1,8 +1,6 @@
 package wxpay
 
 import (
-	"fmt"
-
 	"bytes"
 	"crypto/tls"
 	"encoding/pem"
