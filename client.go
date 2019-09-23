@@ -56,6 +56,15 @@ func (c *Client) fillRequestData(params Params) Params {
 	params["nonce_str"] = nonceStr()
 	params["sign_type"] = c.signType
 	params["sign"] = c.Sign(params)
+
+	switch c.account.acctType {
+	case AccountTypeServiceProvider:
+		params["sub_appid"] = c.account.subAppId
+		params["sub_mch_id"] = c.account.subMchId
+	case AccountTypeNormal:
+	default:
+	}
+
 	return params
 }
 
